@@ -1,5 +1,3 @@
-const ANTHROPIC_MODEL = "claude-sonnet-4-20250514";
-
 const SEO_SYSTEM_PROMPT = `You are a healthcare SEO expert with deep knowledge of medical content marketing, HIPAA-compliant messaging, E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) for health content, and Google's medically-sensitive content guidelines.
 Analyze the provided clinic website content and return a JSON object ONLY (no markdown, no preamble) with this exact structure:
 {
@@ -60,10 +58,10 @@ export const handler = async (event) => {
     return { statusCode: 405, headers, body: JSON.stringify({ error: "Method Not Allowed" }) };
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  console.log("[analyze] API key present:", !!apiKey, "| preview:", apiKey ? `${apiKey.slice(0,10)}...${apiKey.slice(-4)}` : "MISSING");
+  const apiKey = process.env.GROQ_API_KEY;
+  console.log("[analyze] Groq key present:", !!apiKey);
   if (!apiKey) {
-    return { statusCode: 500, headers, body: JSON.stringify({ error: "ANTHROPIC_API_KEY not configured" }) };
+    return { statusCode: 500, headers, body: JSON.stringify({ error: "GROQ_API_KEY not configured" }) };
   }
 
   let url;
@@ -95,38 +93,40 @@ export const handler = async (event) => {
     return { statusCode: 422, headers, body: JSON.stringify({ error: `Could not fetch site: ${err.message}` }) };
   }
 
-  // Call Anthropic
+  // Call Groq (Llama 3.3 70B — free tier, 14,400 req/day)
   try {
-    console.log("[analyze] calling Anthropic...");
-    const aiRes = await fetch("https://api.anthropic.com/v1/messages", {
+    console.log("[analyze] calling Groq...");
+    const aiRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
+        "Authorization": `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: ANTHROPIC_MODEL,
+        model: "llama-3.3-70b-versatile",
         max_tokens: 1500,
-        system: SEO_SYSTEM_PROMPT,
-        messages: [{ role: "user", content: `Analyze this healthcare clinic website content for SEO:\n\n${siteContent}` }],
+        temperature: 0.3,
+        response_format: { type: "json_object" },
+        messages: [
+          { role: "system", content: SEO_SYSTEM_PROMPT },
+          { role: "user", content: `Analyze this healthcare clinic website content for SEO:\n\n${siteContent}` },
+        ],
       }),
     });
 
     const data = await aiRes.json();
-    console.log("[analyze] Anthropic status:", aiRes.status, "| error:", data?.error?.message || "none");
+    console.log("[analyze] Groq status:", aiRes.status, "| error:", data?.error?.message || "none");
 
     if (!aiRes.ok) {
-      return { statusCode: aiRes.status, headers, body: JSON.stringify({ error: data?.error?.message || "Anthropic API error" }) };
+      return { statusCode: aiRes.status, headers, body: JSON.stringify({ error: data?.error?.message || "Groq API error" }) };
     }
 
-    const text = data.content?.map(b => b.text || "").join("") || "";
-    const clean = text.replace(/```json|```/g, "").trim();
-    const parsed = JSON.parse(clean);
+    const text = data.choices?.[0]?.message?.content || "";
+    const parsed = JSON.parse(text);
     console.log("[analyze] success, clinicName:", parsed.clinicName);
     return { statusCode: 200, headers, body: JSON.stringify(parsed) };
   } catch (err) {
-    console.error("[analyze] Anthropic error:", err.message);
+    console.error("[analyze] Groq error:", err.message);
     return { statusCode: 500, headers, body: JSON.stringify({ error: `Analysis failed: ${err.message}` }) };
   }
 };
