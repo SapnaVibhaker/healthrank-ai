@@ -50,13 +50,39 @@ function extractTextFromHTML(html) {
     .slice(0, 4000);
 }
 
-import { fetch as undiciFetch, Agent } from "undici";
+import https from "https";
+import http from "http";
 
-const insecureFetch = (url, options = {}) =>
-  undiciFetch(url, {
-    ...options,
-    dispatcher: new Agent({ connect: { rejectUnauthorized: false } }),
+function insecureFetch(url, { headers = {}, signal } = {}) {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) return reject(new Error("Aborted"));
+
+    const lib = url.startsWith("https") ? https : http;
+    const req = lib.get(url, { headers, rejectUnauthorized: false }, (res) => {
+      // Follow redirects up to 5 hops
+      if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
+        const next = res.headers.location.startsWith("http")
+          ? res.headers.location
+          : new URL(res.headers.location, url).href;
+        return insecureFetch(next, { headers, signal }).then(resolve).catch(reject);
+      }
+      const chunks = [];
+      res.on("data", c => chunks.push(c));
+      res.on("end", () => {
+        const body = Buffer.concat(chunks).toString("utf-8");
+        resolve({
+          status: res.statusCode,
+          ok: res.statusCode >= 200 && res.statusCode < 300,
+          text: () => body,
+        });
+      });
+      res.on("error", reject);
+    });
+    req.on("error", reject);
+    req.setTimeout(12000, () => { req.destroy(); reject(new Error("Request timed out")); });
+    signal?.addEventListener("abort", () => { req.destroy(); reject(new Error("Aborted")); });
   });
+}
 
 export const handler = async (event) => {
   const headers = { "Content-Type": "application/json" };
