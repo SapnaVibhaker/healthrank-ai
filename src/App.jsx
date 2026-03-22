@@ -105,10 +105,24 @@ export default function App() {
         * { box-sizing: border-box; margin: 0; padding: 0; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes gradientShift {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes floatOrb {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50%       { transform: translateY(-30px) scale(1.05); }
+        }
         input::placeholder { color: #9ca3af; }
         input:focus { outline: none; box-shadow: 0 0 0 3px rgba(42,96,73,0.15); border-color: #2a6049 !important; }
         button:hover:not(:disabled) { opacity: 0.92; transform: translateY(-1px); }
         button { transition: all 0.15s ease; }
+        .hero-section {
+          background: linear-gradient(135deg, #d4e8dc 0%, #e8f0ec 25%, #eef2ee 50%, #f5ede6 75%, #f0e8d4 100%);
+          background-size: 300% 300%;
+          animation: gradientShift 10s ease infinite;
+        }
       `}</style>
 
       {/* Nav */}
@@ -131,12 +145,24 @@ export default function App() {
       </nav>
 
       {/* Hero */}
-      <div style={{
-        background: "linear-gradient(160deg, #e8f0ec 0%, #eef2ee 40%, #f5ede6 100%)",
-        padding: result ? "48px 24px 48px" : "80px 24px 80px",
+      <div className="hero-section" style={{
+        minHeight: result ? "auto" : "calc(100vh - 64px)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: result ? "48px 24px" : "80px 24px",
         textAlign: "center",
-        transition: "padding 0.4s ease",
+        position: "relative",
+        overflow: "hidden",
+        transition: "min-height 0.4s ease",
       }}>
+        {/* Decorative orbs */}
+        {!result && (<>
+          <div style={{ position: "absolute", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(42,96,73,0.08) 0%, transparent 70%)", top: "-100px", left: "-100px", animation: "floatOrb 8s ease-in-out infinite", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(245,160,100,0.1) 0%, transparent 70%)", bottom: "-60px", right: "-60px", animation: "floatOrb 10s ease-in-out infinite reverse", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(100,180,140,0.1) 0%, transparent 70%)", top: "30%", right: "10%", animation: "floatOrb 12s ease-in-out infinite 2s", pointerEvents: "none" }} />
+        </>)}
         {!result && (
           <>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.85)", border: "1px solid #d1e5da", borderRadius: 99, padding: "6px 16px", fontSize: 13, color: "#2a6049", fontWeight: 600, marginBottom: 28 }}>
