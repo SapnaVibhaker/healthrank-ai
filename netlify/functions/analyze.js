@@ -54,12 +54,14 @@ function extractTextFromHTML(html) {
 
 export const handler = async (event) => {
   const headers = { "Content-Type": "application/json" };
+  console.log("[analyze] invoked, method:", event.httpMethod);
 
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, headers, body: JSON.stringify({ error: "Method Not Allowed" }) };
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
+  console.log("[analyze] API key present:", !!apiKey, "| preview:", apiKey ? `${apiKey.slice(0,10)}...${apiKey.slice(-4)}` : "MISSING");
   if (!apiKey) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: "ANTHROPIC_API_KEY not configured" }) };
   }
@@ -69,27 +71,33 @@ export const handler = async (event) => {
     ({ url } = JSON.parse(event.body));
     if (!url) throw new Error("No URL provided");
     if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+    console.log("[analyze] target URL:", url);
   } catch {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid request body" }) };
   }
 
-  // Fetch the website server-side (no CORS proxy needed)
+  // Fetch the website server-side
   let siteContent;
   try {
+    console.log("[analyze] fetching site...");
     const res = await fetch(url, {
       headers: { "User-Agent": "Mozilla/5.0 (compatible; HealthRankBot/1.0)" },
       signal: AbortSignal.timeout(10000),
     });
+    console.log("[analyze] site fetch status:", res.status);
     if (!res.ok) throw new Error(`Site returned ${res.status}`);
     const html = await res.text();
     siteContent = extractTextFromHTML(html);
+    console.log("[analyze] extracted text length:", siteContent.length);
     if (!siteContent) throw new Error("No readable content found on that page");
   } catch (err) {
+    console.error("[analyze] site fetch error:", err.message);
     return { statusCode: 422, headers, body: JSON.stringify({ error: `Could not fetch site: ${err.message}` }) };
   }
 
   // Call Anthropic
   try {
+    console.log("[analyze] calling Anthropic...");
     const aiRes = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -106,6 +114,8 @@ export const handler = async (event) => {
     });
 
     const data = await aiRes.json();
+    console.log("[analyze] Anthropic status:", aiRes.status, "| error:", data?.error?.message || "none");
+
     if (!aiRes.ok) {
       return { statusCode: aiRes.status, headers, body: JSON.stringify({ error: data?.error?.message || "Anthropic API error" }) };
     }
@@ -113,8 +123,10 @@ export const handler = async (event) => {
     const text = data.content?.map(b => b.text || "").join("") || "";
     const clean = text.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(clean);
+    console.log("[analyze] success, clinicName:", parsed.clinicName);
     return { statusCode: 200, headers, body: JSON.stringify(parsed) };
   } catch (err) {
+    console.error("[analyze] Anthropic error:", err.message);
     return { statusCode: 500, headers, body: JSON.stringify({ error: `Analysis failed: ${err.message}` }) };
   }
 };
