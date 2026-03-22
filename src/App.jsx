@@ -228,6 +228,53 @@ export default function App() {
             ))}
           </div>
         )}
+
+        {/* Stats teaser strip */}
+        {!result && (
+          <div style={{
+            marginTop: 48, maxWidth: 640, width: "100%",
+            background: "rgba(255,255,255,0.75)", backdropFilter: "blur(8px)",
+            border: "1px solid rgba(42,96,73,0.15)", borderRadius: 16,
+            padding: "18px 28px", display: "flex", alignItems: "center",
+            justifyContent: "space-between", gap: 8, flexWrap: "wrap",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+          }}>
+            {[
+              { num: "77%", label: "of patients Google before booking" },
+              { num: "46%", label: 'of healthcare searches are "near me"' },
+              { num: "28×", label: "more clicks on page 1 vs page 2" },
+            ].map(({ num, label }, i, arr) => (
+              <div key={num} style={{ display: "flex", alignItems: "center", gap: 16, flex: 1 }}>
+                <div style={{ textAlign: "center", minWidth: 80 }}>
+                  <div style={{ fontSize: 26, fontWeight: 800, color: "#2a6049", letterSpacing: "-0.03em", lineHeight: 1 }}>{num}</div>
+                  <div style={{ fontSize: 11, color: "#6b7280", marginTop: 4, lineHeight: 1.4 }}>{label}</div>
+                </div>
+                {i < arr.length - 1 && (
+                  <div style={{ width: 1, height: 36, background: "rgba(42,96,73,0.15)", flexShrink: 0 }} />
+                )}
+              </div>
+            ))}
+            <a
+              href="healthrank-seo-stats.html"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap",
+                fontSize: 13, fontWeight: 600, color: "#2a6049", textDecoration: "none",
+                background: "#f0fdf4", border: "1px solid #bbf7d0",
+                padding: "7px 14px", borderRadius: 8, marginLeft: 8,
+                transition: "background 0.15s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "#dcfce7"}
+              onMouseLeave={e => e.currentTarget.style.background = "#f0fdf4"}
+            >
+              See the research
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
+        )}
       </div>
 
       {/* Error */}
