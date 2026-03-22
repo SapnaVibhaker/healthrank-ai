@@ -127,14 +127,14 @@ export default function App() {
 
       {/* Nav */}
       <nav style={{ background: "#fff", borderBottom: "1px solid #e5e7eb", padding: "0 40px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 100 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
           <div style={{ width: 36, height: 36, borderRadius: 10, background: "#2a6049", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <polyline points="2,10 5,6 8,13 11,4 14,10 17,8" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <span style={{ fontSize: 17, fontWeight: 700, color: "#111827", letterSpacing: "-0.02em" }}>HealthRank AI</span>
-        </div>
+        </a>
         <div style={{ display: "flex", gap: 32 }}>
           {["Features", "How It Works"].map(item => (
             <a key={item} href="#" style={{ fontSize: 14, color: "#6b7280", textDecoration: "none", fontWeight: 500 }}

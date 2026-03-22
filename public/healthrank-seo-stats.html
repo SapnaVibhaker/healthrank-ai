@@ -6,35 +6,38 @@
   <title>Healthcare SEO Statistics | HealthRank AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #020917;
-      --card-bg:    #0a1628;
-      --border:     #1e293b;
-      --blue:       #38bdf8;
-      --green:      #4ade80;
-      --yellow:     #facc15;
-      --red:        #f87171;
-      --purple:     #a78bfa;
-      --orange:     #fb923c;
-      --text:       #f1f5f9;
-      --text-sec:   #94a3b8;
-      --text-muted: #475569;
-      --card-glow-blue:   rgba(56, 189, 248, 0.06);
-      --card-glow-green:  rgba(74, 222, 128, 0.06);
-      --card-glow-yellow: rgba(250, 204, 21, 0.06);
-      --card-glow-red:    rgba(248, 113, 113, 0.06);
-      --card-glow-purple: rgba(167, 139, 250, 0.06);
-      --card-glow-orange: rgba(251, 146, 60, 0.06);
+      --bg:              #f8fafb;
+      --card-bg:         #ffffff;
+      --border:          #e5e7eb;
+      --primary:         #2a6049;
+      --primary-bg:      #f0fdf4;
+      --primary-border:  #bbf7d0;
+      --blue:            #2563eb;
+      --green:           #16a34a;
+      --yellow:          #d97706;
+      --red:             #dc2626;
+      --purple:          #7c3aed;
+      --orange:          #ea580c;
+      --text:            #111827;
+      --text-sec:        #374151;
+      --text-muted:      #6b7280;
+      --card-glow-blue:   rgba(37, 99, 235, 0.05);
+      --card-glow-green:  rgba(22, 163, 74, 0.05);
+      --card-glow-yellow: rgba(217, 119, 6, 0.05);
+      --card-glow-red:    rgba(220, 38, 38, 0.05);
+      --card-glow-purple: rgba(124, 58, 237, 0.05);
+      --card-glow-orange: rgba(234, 88, 12, 0.05);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -43,13 +46,12 @@
 
     /* ─── Header ─── */
     .header {
-      background: linear-gradient(180deg, rgba(10,22,40,0.98) 0%, rgba(2,9,23,0.95) 100%);
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
       padding: 0 clamp(1rem, 5vw, 3rem);
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(12px);
     }
 
     .header-inner {
@@ -70,10 +72,10 @@
     }
 
     .logo-icon {
-      width: 34px;
-      height: 34px;
-      background: linear-gradient(135deg, var(--blue), #0ea5e9);
-      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -89,18 +91,17 @@
       letter-spacing: -0.02em;
     }
 
-    .logo-text span { color: var(--blue); }
+    .logo-text span { color: var(--primary); }
 
     .header-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--blue);
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      padding: 3px 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-border);
+      padding: 3px 12px;
       border-radius: 20px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       white-space: nowrap;
     }
 
@@ -113,10 +114,9 @@
     }
 
     .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--blue);
+      font-weight: 700;
+      color: var(--primary);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 1rem;
@@ -124,7 +124,7 @@
 
     .hero h1 {
       font-size: clamp(1.9rem, 4.5vw, 3.2rem);
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.15;
       margin-bottom: 1rem;
@@ -133,15 +133,12 @@
 
     .hero h1 em {
       font-style: normal;
-      background: linear-gradient(90deg, var(--blue), #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--primary);
     }
 
     .hero-sub {
       font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: var(--text-sec);
+      color: var(--text-muted);
       max-width: 600px;
       margin: 0 auto;
     }
@@ -155,9 +152,8 @@
 
     /* ─── Section label ─── */
     .section-label {
-      font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
-      font-weight: 500;
+      font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -196,7 +192,8 @@
       padding: 1.5rem 1.6rem 1.3rem;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.25s, transform 0.2s;
+      transition: border-color 0.25s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
     .stat-card::before {
@@ -208,7 +205,7 @@
       transition: opacity 0.25s;
     }
 
-    .stat-card:hover { transform: translateY(-2px); }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
     .stat-card:hover::before { opacity: 1; }
 
     .stat-card.blue  { --accent: var(--blue);   --glow: var(--card-glow-blue);   }
@@ -231,7 +228,7 @@
       width: 36px;
       height: 36px;
       border-radius: 9px;
-      background: rgba(255,255,255,0.04);
+      background: #f3f4f6;
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -242,20 +239,19 @@
     .stat-icon svg { color: var(--accent); }
 
     .stat-trend {
-      font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
-      padding: 2px 7px;
+      padding: 2px 8px;
       border-radius: 20px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    .trend-up   { color: var(--green);  background: rgba(74,222,128,0.1);  }
-    .trend-high { color: var(--yellow); background: rgba(250,204,21,0.1);  }
-    .trend-warn { color: var(--red);    background: rgba(248,113,113,0.1); }
+    .trend-up   { color: var(--green);  background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .trend-high { color: var(--yellow); background: #fffbeb; border: 1px solid #fde68a; }
+    .trend-warn { color: var(--red);    background: #fef2f2; border: 1px solid #fecaca; }
 
     .stat-number {
       font-size: clamp(2.4rem, 5vw, 3.4rem);
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.04em;
       color: var(--accent);
       line-height: 1;
@@ -277,15 +273,14 @@
 
     .stat-context {
       font-size: 0.78rem;
-      color: var(--text-sec);
+      color: var(--text-muted);
       line-height: 1.5;
       margin-bottom: 0.85rem;
     }
 
     .stat-source {
-      font-family: 'DM Mono', monospace;
       font-size: 0.63rem;
-      color: var(--text-muted);
+      color: #9ca3af;
       border-top: 1px solid var(--border);
       padding-top: 0.6rem;
       letter-spacing: 0.02em;
@@ -308,6 +303,7 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 1.5rem 1.6rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
     .chart-title {
@@ -348,7 +344,7 @@
 
     .donut-center-num {
       font-size: 1.6rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text);
       letter-spacing: -0.03em;
       line-height: 1;
@@ -359,7 +355,6 @@
       color: var(--text-muted);
       text-align: center;
       margin-top: 2px;
-      font-family: 'DM Mono', monospace;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
@@ -382,14 +377,13 @@
 
     .legend-label {
       font-size: 0.78rem;
-      color: var(--text-sec);
+      color: var(--text-muted);
       flex: 1;
     }
 
     .legend-val {
-      font-family: 'DM Mono', monospace;
       font-size: 0.75rem;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text);
     }
 
@@ -404,18 +398,18 @@
     }
 
     .bar-pos-label {
-      font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
       color: var(--text-muted);
       width: 44px;
       text-align: right;
       flex-shrink: 0;
+      font-weight: 600;
     }
 
     .bar-track {
       flex: 1;
       height: 22px;
-      background: rgba(255,255,255,0.04);
+      background: #f3f4f6;
       border-radius: 4px;
       overflow: hidden;
       position: relative;
@@ -426,20 +420,11 @@
       border-radius: 4px;
       width: 0;
       transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-
-    .bar-fill::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08));
     }
 
     .bar-val {
-      font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text);
       width: 42px;
       text-align: right;
@@ -447,9 +432,8 @@
     }
 
     .bar-source {
-      font-family: 'DM Mono', monospace;
       font-size: 0.63rem;
-      color: var(--text-muted);
+      color: #9ca3af;
       border-top: 1px solid var(--border);
       padding-top: 0.75rem;
       margin-top: 0.5rem;
@@ -464,14 +448,15 @@
       margin-bottom: 2.5rem;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
     .why-section::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--blue), #818cf8, var(--green));
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--green));
     }
 
     .why-header {
@@ -485,8 +470,8 @@
       width: 44px;
       height: 44px;
       border-radius: 10px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-border);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -517,24 +502,23 @@
       gap: 0.85rem;
       align-items: flex-start;
       padding: 1rem 1.1rem;
-      background: rgba(255,255,255,0.02);
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 10px;
       transition: border-color 0.2s, background 0.2s;
     }
 
     .why-point:hover {
-      border-color: rgba(56, 189, 248, 0.3);
-      background: rgba(56, 189, 248, 0.04);
+      border-color: var(--primary-border);
+      background: var(--primary-bg);
     }
 
     .why-point-num {
-      font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--blue);
-      background: rgba(56,189,248,0.1);
-      border: 1px solid rgba(56,189,248,0.2);
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-border);
       border-radius: 6px;
       padding: 2px 7px;
       margin-top: 1px;
@@ -552,14 +536,14 @@
 
     .why-point-detail {
       font-size: 0.78rem;
-      color: var(--text-sec);
+      color: var(--text-muted);
       line-height: 1.5;
     }
 
     /* ─── CTA strip ─── */
     .cta-strip {
-      background: linear-gradient(135deg, rgba(56,189,248,0.08) 0%, rgba(129,140,248,0.08) 100%);
-      border: 1px solid rgba(56,189,248,0.2);
+      background: linear-gradient(135deg, var(--primary-bg), #f8fafb);
+      border: 1px solid var(--primary-border);
       border-radius: 14px;
       padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.25rem, 4vw, 2.5rem);
       display: flex;
@@ -576,20 +560,21 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 0.25rem;
+      color: var(--text);
     }
 
     .cta-sub {
       font-size: 0.82rem;
-      color: var(--text-sec);
+      color: var(--text-muted);
     }
 
     .cta-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: linear-gradient(135deg, var(--blue), #0ea5e9);
-      color: #020917;
-      font-family: 'DM Sans', sans-serif;
+      background: var(--primary);
+      color: #ffffff;
+      font-family: 'Inter', system-ui, sans-serif;
       font-size: 0.9rem;
       font-weight: 700;
       padding: 0.7rem 1.5rem;
@@ -609,8 +594,7 @@
       text-align: center;
       padding: 1.5rem 0 0.5rem;
       font-size: 0.72rem;
-      color: var(--text-muted);
-      font-family: 'DM Mono', monospace;
+      color: #9ca3af;
     }
 
     /* ─── Donut SVG animation ─── */
@@ -650,14 +634,13 @@
 <!-- ─── Header ─── -->
 <header class="header">
   <div class="header-inner">
-    <a class="logo" href="#">
+    <a class="logo" href="/">
       <div class="logo-icon">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M9 2L15.5 5.75V12.25L9 16L2.5 12.25V5.75L9 2Z" stroke="#020917" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M6 9H12M9 6V12" stroke="#020917" stroke-width="1.5" stroke-linecap="round"/>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <polyline points="2,10 5,6 8,13 11,4 14,10 17,8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <span class="logo-text">Health<span>Rank</span> AI</span>
+      <span class="logo-text">HealthRank <span>AI</span></span>
     </a>
     <span class="header-badge"><span class="pulse-dot"></span>Live Research · 2024–2025</span>
   </div>
@@ -856,7 +839,7 @@
         <div class="donut-svg-wrap">
           <svg id="donutSvg" width="160" height="160" viewBox="0 0 160 160">
             <!-- Background ring -->
-            <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="22"/>
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#e5e7eb" stroke-width="22"/>
             <!-- Segment: Google 77.78% -->
             <circle id="seg1" cx="80" cy="80" r="60"
               fill="none"
@@ -1012,7 +995,7 @@
   <div class="why-section">
     <div class="why-header">
       <div class="why-icon-wrap">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2a6049" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
         </svg>
       </div>
@@ -1081,9 +1064,9 @@
       <div class="cta-headline">See How Your Clinic Stacks Up</div>
       <div class="cta-sub">Get a free HealthRank AI audit — see your visibility score, ranking gaps, and exact steps to fix them.</div>
     </div>
-    <a class="cta-btn" href="#">
+    <a class="cta-btn" href="/">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
       </svg>
       Run Free SEO Audit
     </a>
