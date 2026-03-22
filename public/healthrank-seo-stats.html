@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healthcare SEO Statistics | HealthRank AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #020917;
+      --card-bg:    #0a1628;
+      --border:     #1e293b;
+      --blue:       #38bdf8;
+      --green:      #4ade80;
+      --yellow:     #facc15;
+      --red:        #f87171;
+      --purple:     #a78bfa;
+      --orange:     #fb923c;
+      --text:       #f1f5f9;
+      --text-sec:   #94a3b8;
+      --text-muted: #475569;
+      --card-glow-blue:   rgba(56, 189, 248, 0.06);
+      --card-glow-green:  rgba(74, 222, 128, 0.06);
+      --card-glow-yellow: rgba(250, 204, 21, 0.06);
+      --card-glow-red:    rgba(248, 113, 113, 0.06);
+      --card-glow-purple: rgba(167, 139, 250, 0.06);
+      --card-glow-orange: rgba(251, 146, 60, 0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      background: linear-gradient(180deg, rgba(10,22,40,0.98) 0%, rgba(2,9,23,0.95) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(1rem, 5vw, 3rem);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--blue), #0ea5e9);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-icon svg { display: block; }
+
+    .logo-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .logo-text span { color: var(--blue); }
+
+    .header-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--blue);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 5vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--blue), #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--text-sec);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ─── Main container ─── */
+    .main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 5vw, 3rem) clamp(3rem, 6vw, 5rem);
+    }
+
+    /* ─── Section label ─── */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── Stat cards grid ─── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.6rem 1.3rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .stat-card:hover { transform: translateY(-2px); }
+    .stat-card:hover::before { opacity: 1; }
+
+    .stat-card.blue  { --accent: var(--blue);   --glow: var(--card-glow-blue);   }
+    .stat-card.green { --accent: var(--green);  --glow: var(--card-glow-green);  }
+    .stat-card.yellow{ --accent: var(--yellow); --glow: var(--card-glow-yellow); }
+    .stat-card.red   { --accent: var(--red);    --glow: var(--card-glow-red);    }
+    .stat-card.purple{ --accent: var(--purple); --glow: var(--card-glow-purple); }
+    .stat-card.orange{ --accent: var(--orange); --glow: var(--card-glow-orange); }
+
+    .stat-card:hover { border-color: var(--accent); background: var(--glow); }
+
+    .stat-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .stat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .stat-icon svg { color: var(--accent); }
+
+    .stat-trend {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      padding: 2px 7px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .trend-up   { color: var(--green);  background: rgba(74,222,128,0.1);  }
+    .trend-high { color: var(--yellow); background: rgba(250,204,21,0.1);  }
+    .trend-warn { color: var(--red);    background: rgba(248,113,113,0.1); }
+
+    .stat-number {
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-suffix {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 600;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-context {
+      font-size: 0.78rem;
+      color: var(--text-sec);
+      line-height: 1.5;
+      margin-bottom: 0.85rem;
+    }
+
+    .stat-source {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.63rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── Charts row ─── */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 820px) {
+      .charts-row { grid-template-columns: 1fr; }
+    }
+
+    .chart-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.6rem;
+    }
+
+    .chart-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .chart-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── Donut chart ─── */
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .donut-svg-wrap {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .donut-center-num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .donut-center-label {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 2px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .donut-legend { flex: 1; min-width: 140px; }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-label {
+      font-size: 0.78rem;
+      color: var(--text-sec);
+      flex: 1;
+    }
+
+    .legend-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ─── Bar chart ─── */
+    .bar-chart-wrap { width: 100%; }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .bar-pos-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      width: 44px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 22px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .bar-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08));
+    }
+
+    .bar-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text);
+      width: 42px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .bar-source {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.63rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ─── Why section ─── */
+    .why-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), #818cf8, var(--green));
+    }
+
+    .why-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .why-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .why-title {
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .why-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .why-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .why-point {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      padding: 1rem 1.1rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .why-point:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.04);
+    }
+
+    .why-point-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--blue);
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.2);
+      border-radius: 6px;
+      padding: 2px 7px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .why-point-body {}
+
+    .why-point-headline {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .why-point-detail {
+      font-size: 0.78rem;
+      color: var(--text-sec);
+      line-height: 1.5;
+    }
+
+    /* ─── CTA strip ─── */
+    .cta-strip {
+      background: linear-gradient(135deg, rgba(56,189,248,0.08) 0%, rgba(129,140,248,0.08) 100%);
+      border: 1px solid rgba(56,189,248,0.2);
+      border-radius: 14px;
+      padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.25rem, 4vw, 2.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-left {}
+
+    .cta-headline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .cta-sub {
+      font-size: 0.82rem;
+      color: var(--text-sec);
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--blue), #0ea5e9);
+      color: #020917;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    .cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ─── Footer note ─── */
+    .footer-note {
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ─── Donut SVG animation ─── */
+    .donut-seg {
+      transition: stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─── Pulse dot ─── */
+    @keyframes pulse-ring {
+      0%   { transform: scale(0.8); opacity: 1; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      position: relative;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .pulse-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-ring 1.5s ease-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Header ─── -->
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 2L15.5 5.75V12.25L9 16L2.5 12.25V5.75L9 2Z" stroke="#020917" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M6 9H12M9 6V12" stroke="#020917" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">Health<span>Rank</span> AI</span>
+    </a>
+    <span class="header-badge"><span class="pulse-dot"></span>Live Research · 2024–2025</span>
+  </div>
+</header>
+
+<!-- ─── Hero ─── -->
+<section class="hero">
+  <p class="hero-eyebrow">Healthcare SEO Intelligence Report</p>
+  <h1>The Data Behind Why<br /><em>Clinics Live or Die Online</em></h1>
+  <p class="hero-sub">Real statistics from peer-reviewed research and industry reports — showing exactly what patients do before they ever walk through your door.</p>
+</section>
+
+<!-- ─── Main ─── -->
+<main class="main">
+
+  <!-- ─── Stat cards ─── -->
+  <p class="section-label">Key Performance Metrics</p>
+
+  <div class="stats-grid">
+
+    <!-- Card 1 -->
+    <div class="stat-card blue" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-up">↑ Growing</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="77">0</span><span class="stat-suffix">%</span>
+      </div>
+      <div class="stat-label">Patients Search Before Booking</div>
+      <div class="stat-context">of patients use a search engine before scheduling an appointment with a healthcare provider.</div>
+      <div class="stat-source">Source: WebFX Healthcare Marketing Report · 2024</div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="stat-card green" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-up">↑ Doubled since 2015</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="46">0</span><span class="stat-suffix">%</span>
+      </div>
+      <div class="stat-label">Of All Searches Are Local</div>
+      <div class="stat-context">Nearly half of all Google searches have local intent — patients looking for care "near me."</div>
+      <div class="stat-source">Source: Google Internal Data / LocalSEO.com · 2024</div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="stat-card yellow" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 8v4l3 3"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-high">Critical</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="91" data-decimal="0">0</span><span class="stat-suffix">.5%</span>
+      </div>
+      <div class="stat-label">Never Click Past Page 1</div>
+      <div class="stat-context">If your clinic isn't ranking on page one of Google, patients are effectively choosing your competitors.</div>
+      <div class="stat-source">Source: Backlinko / Reputation911 · 2024</div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="stat-card blue" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-up">↑ Rising Fast</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="60">0</span><span class="stat-suffix">%</span>
+      </div>
+      <div class="stat-label">Healthcare Searches on Mobile</div>
+      <div class="stat-context">Nearly two-thirds of all health-related searches now happen on smartphones.</div>
+      <div class="stat-source">Source: WebFX Healthcare Marketing Report · 2024</div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="stat-card red" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-warn">High Stakes</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="84">0</span><span class="stat-suffix">%</span>
+      </div>
+      <div class="stat-label">Check Reviews Before Booking</div>
+      <div class="stat-context">Patients read online reviews before choosing a provider — reviews now outweigh personal referrals.</div>
+      <div class="stat-source">Source: rater8 Patient Choice Report · 2024</div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="stat-card purple" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-up">↑ vs 1.7% outbound</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="14" data-decimal="1">0</span><span class="stat-suffix">.<span class="counter-dec">6</span>%</span>
+      </div>
+      <div class="stat-label">SEO Lead Close Rate</div>
+      <div class="stat-context">SEO-driven leads convert at 14.6% — nearly 9× higher than direct mail or print advertising.</div>
+      <div class="stat-source">Source: Search Engine Journal / Digitalis Medical · 2024</div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="stat-card orange" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-up">↑ Enormous volume</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="100">0</span><span class="stat-suffix">B</span>
+      </div>
+      <div class="stat-label">Healthcare Searches Per Year</div>
+      <div class="stat-context">Google processes 100 billion health searches annually — 70,000 health queries every single minute.</div>
+      <div class="stat-source">Source: WebFX / Google · 2024</div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="stat-card green" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-up">↑ High conversion</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="44">0</span><span class="stat-suffix">%</span>
+      </div>
+      <div class="stat-label">Mobile Searchers Book Appointments</div>
+      <div class="stat-context">Of patients who discover a healthcare provider through mobile search, 44% go on to book an appointment.</div>
+      <div class="stat-source">Source: 2740 Consulting Dental Marketing Statistics · 2024</div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="stat-card red" data-animate>
+      <div class="stat-card-top">
+        <div class="stat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+          </svg>
+        </div>
+        <span class="stat-trend trend-warn">Crisis Level</span>
+      </div>
+      <div class="stat-number">
+        <span class="counter" data-target="71">0</span><span class="stat-suffix">%</span>
+      </div>
+      <div class="stat-label">Switch Providers Over Poor Websites</div>
+      <div class="stat-context">Over 71% of patients will search for another provider if there isn't enough information on the website.</div>
+      <div class="stat-source">Source: Ranktracker Healthcare SEO Report · 2024</div>
+    </div>
+
+  </div>
+
+  <!-- ─── Charts row ─── -->
+  <p class="section-label">Search Behavior Analysis</p>
+
+  <div class="charts-row">
+
+    <!-- Donut: search channels -->
+    <div class="chart-card">
+      <div class="chart-title">Patient Research Channels</div>
+      <div class="chart-subtitle">Platforms patients use to evaluate healthcare providers</div>
+
+      <div class="donut-wrap">
+        <div class="donut-svg-wrap">
+          <svg id="donutSvg" width="160" height="160" viewBox="0 0 160 160">
+            <!-- Background ring -->
+            <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="22"/>
+            <!-- Segment: Google 77.78% -->
+            <circle id="seg1" cx="80" cy="80" r="60"
+              fill="none"
+              stroke="#38bdf8"
+              stroke-width="22"
+              stroke-dasharray="0 377"
+              stroke-dashoffset="0"
+              transform="rotate(-90 80 80)"
+              class="donut-seg"
+              data-val="293.19"
+            />
+            <!-- Segment: WebMD 14.18% -->
+            <circle id="seg2" cx="80" cy="80" r="60"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="22"
+              stroke-dasharray="0 377"
+              stroke-dashoffset="0"
+              transform="rotate(-90 80 80)"
+              class="donut-seg"
+              data-val="53.46"
+            />
+            <!-- Segment: Healthgrades 7.64% -->
+            <circle id="seg3" cx="80" cy="80" r="60"
+              fill="none"
+              stroke="#facc15"
+              stroke-width="22"
+              stroke-dasharray="0 377"
+              stroke-dashoffset="0"
+              transform="rotate(-90 80 80)"
+              class="donut-seg"
+              data-val="28.80"
+            />
+            <!-- Segment: Other 0.4% -->
+            <circle id="seg4" cx="80" cy="80" r="60"
+              fill="none"
+              stroke="#475569"
+              stroke-width="22"
+              stroke-dasharray="0 377"
+              stroke-dashoffset="0"
+              transform="rotate(-90 80 80)"
+              class="donut-seg"
+              data-val="1.55"
+            />
+          </svg>
+          <div class="donut-center">
+            <div class="donut-center-num">4</div>
+            <div class="donut-center-label">Platforms</div>
+          </div>
+        </div>
+
+        <div class="donut-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#38bdf8"></div>
+            <div class="legend-label">Google</div>
+            <div class="legend-val">77.8%</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#4ade80"></div>
+            <div class="legend-label">WebMD</div>
+            <div class="legend-val">14.2%</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#facc15"></div>
+            <div class="legend-label">Healthgrades</div>
+            <div class="legend-val">7.6%</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#475569"></div>
+            <div class="legend-label">Other</div>
+            <div class="legend-val">0.4%</div>
+          </div>
+          <div style="margin-top:0.75rem; font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--text-muted);">
+            Source: RepuGen Patient Survey · 2025
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar chart: CTR by position -->
+    <div class="chart-card">
+      <div class="chart-title">Google Organic CTR by Search Position</div>
+      <div class="chart-subtitle">Click-through rate drops sharply after position 3 — page 2 is invisible</div>
+
+      <div class="bar-chart-wrap" id="barChart">
+
+        <div class="bar-row">
+          <div class="bar-pos-label">#1</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="background: linear-gradient(90deg, #38bdf8, #0ea5e9);" data-width="100%"></div>
+          </div>
+          <div class="bar-val">28.5%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-pos-label">#2</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="background: linear-gradient(90deg, #38bdf8cc, #0ea5e9cc);" data-width="55.1%"></div>
+          </div>
+          <div class="bar-val">15.7%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-pos-label">#3</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="background: linear-gradient(90deg, #4ade80, #22c55e);" data-width="38.6%"></div>
+          </div>
+          <div class="bar-val">11.0%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-pos-label">#4</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="background: linear-gradient(90deg, #4ade8099, #22c55e99);" data-width="22.8%"></div>
+          </div>
+          <div class="bar-val">6.5%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-pos-label">#5</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="background: linear-gradient(90deg, #facc15, #eab308);" data-width="16.5%"></div>
+          </div>
+          <div class="bar-val">4.7%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-pos-label">#6–10</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="background: linear-gradient(90deg, #fb923c, #f97316);" data-width="8.8%"></div>
+          </div>
+          <div class="bar-val">2.5%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-pos-label">Pg 2+</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="background: linear-gradient(90deg, #f87171, #ef4444);" data-width="2.2%"></div>
+          </div>
+          <div class="bar-val">&lt;1%</div>
+        </div>
+
+      </div>
+
+      <div class="bar-source">Source: Backlinko analysis of 4M Google search results · 2024 &nbsp;|&nbsp; First Page Sage CTR Report · 2026</div>
+    </div>
+
+  </div>
+
+  <!-- ─── Why this matters ─── -->
+  <p class="section-label">Clinical Impact</p>
+
+  <div class="why-section">
+    <div class="why-header">
+      <div class="why-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="why-title">Why This Matters for Your Clinic</div>
+        <div class="why-subtitle">Translating the data into practice-level decisions</div>
+      </div>
+    </div>
+
+    <div class="why-points">
+
+      <div class="why-point">
+        <span class="why-point-num">01</span>
+        <div class="why-point-body">
+          <div class="why-point-headline">Your Patients Are Already Searching</div>
+          <div class="why-point-detail">With 77% of patients using Google before booking and 100 billion health searches yearly, the question isn't whether patients will search — it's whether they'll find you or your competitor.</div>
+        </div>
+      </div>
+
+      <div class="why-point">
+        <span class="why-point-num">02</span>
+        <div class="why-point-body">
+          <div class="why-point-headline">Page 2 Might as Well Not Exist</div>
+          <div class="why-point-detail">91.5% of users never scroll past page one. A clinic ranked #11 receives less than 1% of clicks — effectively invisible to potential patients searching for care right now.</div>
+        </div>
+      </div>
+
+      <div class="why-point">
+        <span class="why-point-num">03</span>
+        <div class="why-point-body">
+          <div class="why-point-headline">Local SEO Is Your Highest-ROI Channel</div>
+          <div class="why-point-detail">Local SEO converts at ~50% versus just 3% for social media ads. SEO leads close at 14.6% vs 1.7% for outbound. No other channel comes close to this return.</div>
+        </div>
+      </div>
+
+      <div class="why-point">
+        <span class="why-point-num">04</span>
+        <div class="why-point-body">
+          <div class="why-point-headline">Mobile Optimization Is Non-Negotiable</div>
+          <div class="why-point-detail">60% of healthcare searches happen on smartphones. 44% of patients who find a provider via mobile search go on to book. A slow or un-optimized mobile site bleeds patients daily.</div>
+        </div>
+      </div>
+
+      <div class="why-point">
+        <span class="why-point-num">05</span>
+        <div class="why-point-body">
+          <div class="why-point-headline">Reviews Are the New Referrals</div>
+          <div class="why-point-detail">84% of patients check online reviews before booking, and 61% trust reviews more than personal referrals. Reputation management is now core to patient acquisition — not optional.</div>
+        </div>
+      </div>
+
+      <div class="why-point">
+        <span class="why-point-num">06</span>
+        <div class="why-point-body">
+          <div class="why-point-headline">A Poor Website Drives Patients Away</div>
+          <div class="why-point-detail">71% of patients will leave to find another provider if your website lacks sufficient information. Your website is your most critical intake form — before a patient ever calls.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── CTA ─── -->
+  <div class="cta-strip">
+    <div class="cta-left">
+      <div class="cta-headline">See How Your Clinic Stacks Up</div>
+      <div class="cta-sub">Get a free HealthRank AI audit — see your visibility score, ranking gaps, and exact steps to fix them.</div>
+    </div>
+    <a class="cta-btn" href="#">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+      </svg>
+      Run Free SEO Audit
+    </a>
+  </div>
+
+  <div class="footer-note">
+    HealthRank AI &nbsp;·&nbsp; Statistics sourced from publicly available industry research &nbsp;·&nbsp; Report compiled March 2025
+  </div>
+
+</main>
+
+<script>
+  /* ─── Animated counters via IntersectionObserver ─── */
+  function easeOutExpo(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const duration = 1600;
+    const start = performance.now();
+
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutExpo(progress);
+      const current = target * eased;
+
+      // Format
+      if (Number.isInteger(target)) {
+        el.textContent = Math.round(current).toLocaleString();
+      } else {
+        el.textContent = current.toFixed(1);
+      }
+
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = Number.isInteger(target) ? target.toLocaleString() : target.toFixed(1);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const card = entry.target;
+        card.querySelectorAll('.counter').forEach(animateCounter);
+        counterObs.unobserve(card);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('[data-animate]').forEach(card => counterObs.observe(card));
+
+  /* ─── Bar chart animation ─── */
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.bar-fill').forEach((bar, i) => {
+          const targetWidth = bar.dataset.width;
+          setTimeout(() => {
+            bar.style.width = targetWidth;
+          }, i * 100);
+        });
+        barObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const barChartEl = document.getElementById('barChart');
+  if (barChartEl) barObs.observe(barChartEl);
+
+  /* ─── Donut chart animation ─── */
+  // circumference of r=60: 2 * π * 60 ≈ 376.99
+  const CIRC = 2 * Math.PI * 60;
+
+  // Data: [percentage, color, id]
+  const segments = [
+    { id: 'seg1', pct: 77.78 },
+    { id: 'seg2', pct: 14.18 },
+    { id: 'seg3', pct: 7.64  },
+    { id: 'seg4', pct: 0.40  },
+  ];
+
+  const donutObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        let offset = 0;
+
+        segments.forEach((seg, i) => {
+          const el = document.getElementById(seg.id);
+          if (!el) return;
+
+          const dash  = (seg.pct / 100) * CIRC;
+          const gap   = CIRC - dash;
+          const startOffset = CIRC - offset;
+
+          el.setAttribute('stroke-dasharray', `${dash} ${gap}`);
+          el.setAttribute('stroke-dashoffset', startOffset);
+
+          offset += dash;
+        });
+
+        donutObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const donutEl = document.getElementById('donutSvg');
+  if (donutEl) donutObs.observe(donutEl);
+</script>
+
+</body>
+</html>
