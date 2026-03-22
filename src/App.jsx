@@ -1,58 +1,5 @@
 import { useState } from "react";
 
-const ANTHROPIC_MODEL = "claude-sonnet-4-20250514";
-
-const SEO_SYSTEM_PROMPT = `You are a healthcare SEO expert with deep knowledge of medical content marketing, HIPAA-compliant messaging, E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) for health content, and Google's medically-sensitive content guidelines.
-Analyze the provided clinic website content and return a JSON object ONLY (no markdown, no preamble) with this exact structure:
-{
-  "clinicName": "detected or inferred clinic name",
-  "overallScore": 72,
-  "summary": "2-3 sentence overview of SEO health",
-  "scores": {
-    "keywordOptimization": 65,
-    "readability": 80,
-    "eeat": 55,
-    "localSEO": 70,
-    "contentDepth": 60,
-    "callToAction": 75
-  },
-  "topKeywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
-  "missingKeywords": ["missing1", "missing2", "missing3"],
-  "readabilityLevel": "Grade 10 – slightly above recommended for patients",
-  "tone": "Clinical and formal — consider warmer language for patient trust",
-  "strengths": ["Clear service list with specialty names", "Contact info visible on homepage"],
-  "issues": [
-    { "severity": "high", "issue": "No patient testimonials or reviews section", "fix": "Add a reviews widget from Google or Healthgrades to boost E-E-A-T" },
-    { "severity": "high", "issue": "Missing location-based keywords", "fix": "Include city/neighborhood name naturally in headings and first paragraph" },
-    { "severity": "medium", "issue": "No FAQ section", "fix": "Add FAQ with common patient questions — captures featured snippet traffic" },
-    { "severity": "low", "issue": "Meta description not optimized", "fix": "Rewrite to include primary service + location + a patient benefit under 160 chars" }
-  ],
-  "quickWins": [
-    "Add your city name to the H1 heading",
-    "Include a Google Maps embed on the contact page",
-    "Add schema markup for MedicalOrganization"
-  ]
-}`;
-
-function extractTextFromHTML(html) {
-  const div = document.createElement("div");
-  div.innerHTML = html;
-  ["script", "style", "nav", "footer", "header", "noscript", "iframe"].forEach(tag => {
-    div.querySelectorAll(tag).forEach(el => el.remove());
-  });
-  return div.innerText.replace(/\s+/g, " ").trim().slice(0, 4000);
-}
-
-async function fetchSiteContent(url) {
-  let normalized = url.trim();
-  if (!/^https?:\/\//i.test(normalized)) normalized = "https://" + normalized;
-  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(normalized)}`;
-  const res = await fetch(proxyUrl);
-  if (!res.ok) throw new Error("Could not fetch the website. Try another URL.");
-  const data = await res.json();
-  if (!data.contents) throw new Error("No content returned from the website.");
-  return extractTextFromHTML(data.contents);
-}
 
 const scoreColor = (s) => s >= 75 ? "#4ade80" : s >= 50 ? "#facc15" : "#f87171";
 const scoreLabel = (s) => s >= 75 ? "Good" : s >= 50 ? "Needs Work" : "Poor";
@@ -138,23 +85,16 @@ export default function App() {
     setResult(null);
     try {
       setLoadingMsg("🌐 Fetching site...");
-      const content = await fetchSiteContent(url);
+      await new Promise(r => setTimeout(r, 400));
       setLoadingMsg("🤖 Analyzing SEO...");
       const response = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: ANTHROPIC_MODEL,
-          max_tokens: 1000,
-          system: SEO_SYSTEM_PROMPT,
-          messages: [{ role: "user", content: `Analyze this healthcare clinic website content for SEO:\n\n${content}` }],
-        }),
+        body: JSON.stringify({ url: url.trim() }),
       });
       const data = await response.json();
-      const text = data.content?.map(b => b.text || "").join("") || "";
-      const clean = text.replace(/```json|```/g, "").trim();
-      const parsed = JSON.parse(clean);
-      setResult(parsed);
+      if (!response.ok) throw new Error(data.error || "Analysis failed");
+      setResult(data);
     } catch (e) {
       setError(e.message || "Something went wrong. Please try again.");
     }
