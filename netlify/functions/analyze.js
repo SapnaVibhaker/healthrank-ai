@@ -154,10 +154,9 @@ export const handler = async (event) => {
         model: "llama-3.3-70b-versatile",
         max_tokens: 1500,
         temperature: 0.3,
-        response_format: { type: "json_object" },
         messages: [
           { role: "system", content: SEO_SYSTEM_PROMPT },
-          { role: "user", content: `Analyze this healthcare clinic website content for SEO:\n\n${siteContent}` },
+          { role: "user", content: `Analyze this healthcare clinic website content for SEO and return ONLY a valid JSON object, no markdown, no explanation:\n\n${siteContent}` },
         ],
       }),
     });
@@ -169,8 +168,11 @@ export const handler = async (event) => {
       return { statusCode: aiRes.status, headers, body: JSON.stringify({ error: data?.error?.message || "Groq API error" }) };
     }
 
-    const text = data.choices?.[0]?.message?.content || "";
-    const parsed = JSON.parse(text);
+    const raw = data.choices?.[0]?.message?.content || "";
+    // Strip markdown code fences and find the JSON object
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error("Model did not return valid JSON");
+    const parsed = JSON.parse(jsonMatch[0]);
     console.log("[analyze] success, clinicName:", parsed.clinicName);
     return { statusCode: 200, headers, body: JSON.stringify(parsed) };
   } catch (err) {
