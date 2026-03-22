@@ -50,6 +50,14 @@ function extractTextFromHTML(html) {
     .slice(0, 4000);
 }
 
+import { fetch as undiciFetch, Agent } from "undici";
+
+const insecureFetch = (url, options = {}) =>
+  undiciFetch(url, {
+    ...options,
+    dispatcher: new Agent({ connect: { rejectUnauthorized: false } }),
+  });
+
 export const handler = async (event) => {
   const headers = { "Content-Type": "application/json" };
   console.log("[analyze] invoked, method:", event.httpMethod);
@@ -90,48 +98,21 @@ export const handler = async (event) => {
   };
 
   try {
-    console.log("[fetch] starting fetch for:", url);
-    console.log("[fetch] headers being sent:", JSON.stringify(browserHeaders));
-
-    let res;
-    try {
-      res = await fetch(url, {
-        headers: browserHeaders,
-        redirect: "follow",
-        signal: AbortSignal.timeout(12000),
-      });
-    } catch (fetchErr) {
-      console.error("[fetch] THREW EXCEPTION");
-      console.error("[fetch] err.message:", fetchErr.message);
-      console.error("[fetch] err.name:", fetchErr.name);
-      console.error("[fetch] err.code:", fetchErr.code ?? "none");
-      console.error("[fetch] err.cause:", fetchErr.cause ? JSON.stringify(fetchErr.cause, Object.getOwnPropertyNames(fetchErr.cause)) : "none");
-      console.error("[fetch] err.stack:", fetchErr.stack);
-      throw fetchErr;
-    }
-
-    console.log("[fetch] response received");
-    console.log("[fetch] status:", res.status, res.statusText);
-    console.log("[fetch] headers:", JSON.stringify(Object.fromEntries(res.headers.entries())));
-    console.log("[fetch] redirected:", res.redirected, "| final url:", res.url);
-
-    if (!res.ok) throw new Error(`Site returned ${res.status} ${res.statusText}`);
-
+    console.log("[analyze] fetching site...");
+    const res = await insecureFetch(url, {
+      headers: browserHeaders,
+      redirect: "follow",
+      signal: AbortSignal.timeout(12000),
+    });
+    console.log("[analyze] site fetch status:", res.status);
+    if (!res.ok) throw new Error(`Site returned ${res.status}`);
     const html = await res.text();
-    console.log("[fetch] raw html length:", html.length);
-    console.log("[fetch] html preview:", html.slice(0, 200).replace(/\n/g, " "));
-
     siteContent = extractTextFromHTML(html);
-    console.log("[fetch] extracted text length:", siteContent.length);
-    console.log("[fetch] text preview:", siteContent.slice(0, 200));
-
+    console.log("[analyze] extracted text length:", siteContent.length);
     if (!siteContent) throw new Error("No readable content found on that page");
   } catch (err) {
-    console.error("[fetch] FINAL CATCH — message:", err.message);
-    const msg = err.message.includes("fetch failed")
-      ? "This site blocks automated requests (bot protection). Try a smaller clinic URL."
-      : `Could not fetch site: ${err.message}`;
-    return { statusCode: 422, headers, body: JSON.stringify({ error: msg }) };
+    console.error("[analyze] site fetch error:", err.message, "| cause:", err.cause?.message ?? "none");
+    return { statusCode: 422, headers, body: JSON.stringify({ error: `Could not fetch site: ${err.cause?.message || err.message}` }) };
   }
 
   // Call Groq (Llama 3.3 70B — free tier, 14,400 req/day)
